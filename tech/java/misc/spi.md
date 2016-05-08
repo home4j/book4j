@@ -52,3 +52,53 @@ me.joshua.arsenal4j.java.demo.spi.GeneralDictionary
 
 #### 服务类加载和使用
 
+```java
+public class DictionaryService {
+
+	private static DictionaryService service;
+	private ThreadLocal<ServiceLoader<Dictionary>> localLoader;
+
+	private DictionaryService() {
+		// 2. ServiceLoader实例线程不安全
+		localLoader = new ThreadLocal<ServiceLoader<Dictionary>>() {
+			@Override
+			protected ServiceLoader<Dictionary> initialValue() {
+				// 1. 加载服务
+				return ServiceLoader.load(Dictionary.class);
+			}
+		};
+	}
+
+	public static synchronized DictionaryService getInstance() {
+		// 4. 单例，便于获取使用
+		if (service == null) {
+			service = new DictionaryService();
+		}
+		return service;
+	}
+
+	public String getDefinition(String word) {
+		String definition = null;
+
+		try {
+			// 3. 遍历并调用服务
+			Iterator<Dictionary> dictionaries = localLoader.get().iterator();
+			while (definition == null && dictionaries.hasNext()) {
+				Dictionary d = dictionaries.next();
+				definition = d.getDefinition(word);
+			}
+		} catch (ServiceConfigurationError serviceError) {
+			definition = null;
+			serviceError.printStackTrace();
+
+		}
+		return definition;
+	}
+}
+```
+
+几个注意点：
+
+1. 服务加载
+  java.util.ServiceLoader<Dictionary>
+1. 
