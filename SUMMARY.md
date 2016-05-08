@@ -1,4 +1,4 @@
 # Summary
 
 * [Tech](tech/README.md)
-  * [Java](tech/java.md)
+  * [Java](tech/java/README.md)
