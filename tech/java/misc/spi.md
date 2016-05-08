@@ -1,6 +1,6 @@
 # SPI
 
-Java提供了一套原生的SPI（Service Provider Interface）扩展机制，一些三方的库，如Apache日志组件就是使用了SPI来指定具体的日志实现类。下面通过一个Java示例来展示具体SPI的使用。
+Java提供了一套原生的SPI（Service Provider Interface）扩展机制，一些库，如Apache日志组件就是使用了SPI来指定具体的日志实现类。下面通过一个Java示例来展示具体SPI的使用。
 
 ## Demo
 
@@ -33,7 +33,6 @@ public class ExtendedDictionary implements Dictionary {
 	public String getDefinition(String word) {
 		return map.get(word);
 	}
-
 }
 ```
 
@@ -43,7 +42,7 @@ public class ExtendedDictionary implements Dictionary {
 
 #### 配置
 
-SPI的配置是classpath中```META-INF/services```目录下的与接口同名的文件中，示例的 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
+SPI的配置是classpath中```META-INF/services```目录下的与接口同名的文件中，示例的 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 完整路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
 
 配置内容则是具体实现类的全类名：
 ```
