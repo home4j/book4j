@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [Tech](tech/readme.md)
+* [技术](tech/readme.md)
    * [Java](tech/java/readme.md)
+     * 杂
 
