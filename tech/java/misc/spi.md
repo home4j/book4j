@@ -99,6 +99,8 @@ public class DictionaryService {
 
 几个注意点：
 
-1. 服务加载
-  java.util.ServiceLoader<Dictionary>
-1. 
+1. 服务加载<br/>
+  服务加载通过```java.util.ServiceLoader.load(Class<T>)```来完成，ServiceLoader会解析接口名对应的配置文件，取得实现类并初始化。
+  1. r32
+    2. fa<br>
+      fjiawe
