@@ -103,7 +103,7 @@ public class DictionaryService {
   服务加载通过```java.util.ServiceLoader.load(Class<T>)```来完成，ServiceLoader会解析接口名对应的配置文件，取得实现类并初始化。
 2. 线程不安全<br/>
   `Instances of this class are not safe for use by multiple concurrent threads. `<br/>
-  就如其注释所说，`ServiceLoader`是线程不安全的，
+  就如其注释所说，`ServiceLoader`是线程不安全的，所以要结合`ThreadLocal`使用避免并发的问题。
 3. 
     2. fa<br>
       fjiawe
