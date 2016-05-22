@@ -1,6 +1,6 @@
 # SPI
 
-Java提供了一套原生的SPI（Service Provider Interface）扩展机制，一些库，如Apache日志组件就是使用了SPI来指定具体的日志实现类。下面通过一个Java示例来展示具体SPI的使用。
+Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Apache日志组件就是基于SPI来配置日志实现类，下面是示例。
 
 ## Demo
 
@@ -36,21 +36,21 @@ public class ExtendedDictionary implements Dictionary {
 }
 ```
 
-另一个实现类（[GeneralDictionary](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/GeneralDictionary.java)）类似，仅提供了不同的内容，不多做罗列。
+另一个实现类（[GeneralDictionary](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/GeneralDictionary.java)）类似，不多做罗列。
 
 ### 服务加载
 
 #### 配置
 
-SPI的配置是classpath中```META-INF/services```目录下的与接口同名的文件中，示例的 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 完整路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
+SPI的配置是```META-INF/services```目录下与接口同名的文件，示例 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
 
-配置内容则是具体实现类的全类名：
+内容是具体实现类的全类名：
 ```
 me.joshua.arsenal4j.java.demo.spi.ExtendedDictionary
 me.joshua.arsenal4j.java.demo.spi.GeneralDictionary
 ```
 
-#### 服务类加载和使用
+#### 加载和使用
 
 ```java
 public class DictionaryService {
@@ -70,7 +70,6 @@ public class DictionaryService {
 	}
 
 	public static synchronized DictionaryService getInstance() {
-		// 4. 单例，便于获取使用
 		if (service == null) {
 			service = new DictionaryService();
 		}
@@ -100,10 +99,9 @@ public class DictionaryService {
 几个注意点：
 
 1. 服务加载<br/>
-  服务加载通过```java.util.ServiceLoader.load(Class<T>)```来完成，ServiceLoader会解析接口名对应的配置文件，取得实现类并初始化。
+  通过```java.util.ServiceLoader.load(Class<T>)```来完成，扫描classpath下所有与接口同名的配置文件，解析实现类并初始化。
 2. 线程不安全<br/>
   `Instances of this class are not safe for use by multiple concurrent threads. `<br/>
-  就如其注释所说，`ServiceLoader`是线程不安全的，所以要结合`ThreadLocal`使用避免并发的问题。
-3. 
-    2. fa<br>
-      fjiawe
+  就如其注释所说，`ServiceLoader`是线程不安全的，所以结合`ThreadLocal`避免并发问题。
+3. 遍历调用<br/>
+  只能通过遍历来获取服务实现，对开发不友好
