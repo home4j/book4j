@@ -104,4 +104,71 @@ public class DictionaryService {
   `Instances of this class are not safe for use by multiple concurrent threads. `<br/>
   就如其注释所说，`ServiceLoader`是线程不安全的，所以结合`ThreadLocal`避免并发问题。
 3. 遍历调用<br/>
-  只能通过遍历来获取服务实现，对开发不友好
+  只能通过遍历来获取服务实现，有一定性能损耗，对开发不友好。
+
+# LightExt
+
+因SPI在使用时有所不便，所以考虑对其进行改进，而[Dubbo](http://dubbo.io/)提供了一个很好的方案，基于它的扩展加载机制，实现了一个精简的服务扩展框架，即LightExt。
+
+LightExt解决了SPI的两个问题：
+
+1. 线程安全
+2. 根据名字获取扩展实例，避免遍历所有实例
+
+## Demo
+
+#### 配置
+
+LightExt的配置，在```META-INF/services```目录下与接口同名的文件，示例 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
+
+内容是具体实现类的全类名：
+```
+me.joshua.arsenal4j.java.demo.spi.ExtendedDictionary
+me.joshua.arsenal4j.java.demo.spi.GeneralDictionary
+```
+
+#### 加载和使用
+
+```java
+public class DictionaryService {
+
+	private static DictionaryService service;
+	private ThreadLocal<ServiceLoader<Dictionary>> localLoader;
+
+	private DictionaryService() {
+		// 2. ServiceLoader实例线程不安全
+		localLoader = new ThreadLocal<ServiceLoader<Dictionary>>() {
+			@Override
+			protected ServiceLoader<Dictionary> initialValue() {
+				// 1. 加载服务
+				return ServiceLoader.load(Dictionary.class);
+			}
+		};
+	}
+
+	public static synchronized DictionaryService getInstance() {
+		if (service == null) {
+			service = new DictionaryService();
+		}
+		return service;
+	}
+
+	public String getDefinition(String word) {
+		String definition = null;
+
+		try {
+			// 3. 遍历并调用服务
+			Iterator<Dictionary> dictionaries = localLoader.get().iterator();
+			while (definition == null && dictionaries.hasNext()) {
+				Dictionary d = dictionaries.next();
+				definition = d.getDefinition(word);
+			}
+		} catch (ServiceConfigurationError serviceError) {
+			definition = null;
+			serviceError.printStackTrace();
+
+		}
+		return definition;
+	}
+}
+```
