@@ -16,7 +16,7 @@ public interface Dictionary {
 }
 ```
 
-[ExtendedDictionary](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/ExtendedDictionary.java)
+[ExtendedDictionary](https://github.com/home4j/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/ExtendedDictionary.java)
 
 ```java
 public class ExtendedDictionary implements Dictionary {
