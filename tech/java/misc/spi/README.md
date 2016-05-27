@@ -8,7 +8,7 @@ Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Ap
 
 ### 服务接口&实现
 
-[Dictionary接口](https://github.com/home4j/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/Dictionary.java)，字典服务，用于查单词的解释。
+[Dictionary接口](https://github.com/home4j/arsenal4j/tree/master/java/demo/src/test/java/me/joshua/arsenal4j/java/demo/spi/Dictionary.java)，字典服务，用于查单词的解释。
 
 ```java
 public interface Dictionary {
