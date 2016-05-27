@@ -36,7 +36,7 @@ public class ExtendedDictionary implements Dictionary {
 }
 ```
 
-另一个实现类（[GeneralDictionary](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/java/me/joshua/arsenal4j/java/demo/spi/GeneralDictionary.java)）类似，不多做罗列。
+另一个实现类（[GeneralDictionary](https://github.com/home4j/arsenal4j/blob/master/java/demo/src/test/java/me/joshua/arsenal4j/java/demo/spi/GeneralDictionary.java)）类似，不多做罗列。
 
 ### 服务加载
 
