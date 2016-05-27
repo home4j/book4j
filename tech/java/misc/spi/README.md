@@ -108,7 +108,7 @@ public class DictionaryService {
 
 # LightExt
 
-因SPI在使用时有所不便，所以考虑对其进行改进，而[Dubbo](http://dubbo.io/)提供了一个很好的方案，基于它的扩展加载机制，实现了一个精简的服务扩展框架，即LightExt。
+因SPI在使用时有所不便，所以考虑对其进行改进，而 [Dubbo](http://dubbo.io/) 提供了一个很好的方案，基于它的扩展加载机制，实现了一个精简的服务扩展框架，即LightExt。
 
 LightExt解决了SPI的两个问题：
 
