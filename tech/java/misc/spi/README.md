@@ -42,7 +42,7 @@ public class ExtendedDictionary implements Dictionary {
 
 #### 配置
 
-SPI的配置是```META-INF/services```目录下与接口同名的文件，示例 [配置文件](https://github.com/joshuazhan/arsenal4j/blob/master/java/demo/src/main/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
+SPI的配置是```META-INF/services```目录下与接口同名的文件，示例 [配置文件](https://github.com/home4j/arsenal4j/blob/master/java/demo/src/test/resources/META-INF/services/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/services/me.joshua.arsenal4j.java.demo.extension.simple.SimpleExt```。
 
 内容是具体实现类的全类名：
 ```
