@@ -1,6 +1,6 @@
 # SPI
 
-Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Apache commons-logging就是基于SPI来配置日志实现类，下面是示例。
+Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Apache commons-logging就可以用SPI来配置日志实现类，下面是示例。
 
 ## Demo
 
@@ -159,3 +159,34 @@ public interface SimpleExt {
 ```
 
 更详细的接口说明可参考 [项目文档](https://github.com/home4j/lightext)。
+
+#### 实现
+
+```java
+public <S extends T> S getExtension(String name) {
+    if (StringUtils.isBlank(name)) {
+        throw new IllegalArgumentException("Extension name == null");
+    }
+
+    Holder<Object> holder = cachedInstances.get(name);
+    if (holder == null) {
+        cachedInstances.putIfAbsent(name, new Holder<Object>());
+
+        // 确保拿到的是cachedInstances中的Holder实例
+        holder = cachedInstances.get(name);
+    }
+
+    Object instance = holder.get();
+    if (instance == null) {
+        // 基于Holder，实现细粒度的同步，避免使用Loader类或Loader实例这种粗粒度的锁
+        synchronized (holder) {
+            instance = holder.get();
+            if (instance == null) {
+                instance = createExtension(name);
+                holder.set(instance);
+            }
+        }
+    }
+    return (S) instance;
+}
+```
