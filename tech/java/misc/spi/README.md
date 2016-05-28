@@ -140,6 +140,9 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
 ```java
 // 根据接口获取加载器（线程安全的，可供多线程复用）
 LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.class);
+
+// 获取对应名称的扩展实现
+SimpleExt impl1 = simpleLoader.getExtension("impl1");
 ```
 
 根据接口获取加载器（线程安全的，可供多线程复用）。
