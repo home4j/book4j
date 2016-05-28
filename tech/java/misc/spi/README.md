@@ -135,58 +135,29 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
 
 #### 加载和使用
 
-##### 1. 服务加载
-
 ```java
 // 根据接口获取加载器（线程安全的，可供多线程复用）
 LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.class);
 
 // 获取对应名称的扩展实现
 SimpleExt impl1 = simpleLoader.getExtension("impl1");
+
+
+// 获取对应名称的扩展实现
+SimpleExt impl1 = simpleLoader.getExtension("impl1");
+
+// 泛型接口，可直接指定类型
+SimpleExtImpl2 impl2 = simpleLoader.getExtension("impl2");
+
+// 获取默认扩展实现
+SimpleExt defaultExt = simpleLoader.getDefaultExtension();
 ```
 
-根据接口获取加载器（线程安全的，可供多线程复用）。
+默认的扩展实现需要通过，注解配置，未配置直接获取会抛```IllegalStateException```
 
 ```java
-public class DictionaryService {
-
-	private static DictionaryService service;
-	private ThreadLocal<ServiceLoader<Dictionary>> localLoader;
-
-	private DictionaryService() {
-		// 2. ServiceLoader实例线程不安全
-		localLoader = new ThreadLocal<ServiceLoader<Dictionary>>() {
-			@Override
-			protected ServiceLoader<Dictionary> initialValue() {
-				// 1. 加载服务
-				return ServiceLoader.load(Dictionary.class);
-			}
-		};
-	}
-
-	public static synchronized DictionaryService getInstance() {
-		if (service == null) {
-			service = new DictionaryService();
-		}
-		return service;
-	}
-
-	public String getDefinition(String word) {
-		String definition = null;
-
-		try {
-			// 3. 遍历并调用服务
-			Iterator<Dictionary> dictionaries = localLoader.get().iterator();
-			while (definition == null && dictionaries.hasNext()) {
-				Dictionary d = dictionaries.next();
-				definition = d.getDefinition(word);
-			}
-		} catch (ServiceConfigurationError serviceError) {
-			definition = null;
-			serviceError.printStackTrace();
-
-		}
-		return definition;
-	}
+@Default("impl1")
+public interface SimpleExt {
+	String echo(String s);
 }
 ```
