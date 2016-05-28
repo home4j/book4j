@@ -138,6 +138,7 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
 ##### 1. 服务加载
 
 ```java
+// 根据接口获取加载器（线程安全的，可供多线程复用）
 LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.class);
 ```
 
