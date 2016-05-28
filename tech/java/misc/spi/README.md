@@ -135,6 +135,14 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
 
 #### 加载和使用
 
+##### 1. 服务加载
+
+```java
+LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.class);
+```
+
+根据接口获取加载器，因实现类是线程安全的，所以可以供多线程复用
+
 ```java
 public class DictionaryService {
 
