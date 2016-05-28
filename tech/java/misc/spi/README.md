@@ -125,7 +125,7 @@ LightExt的配置目录为```META-INF/lightext```（和SPI不同），目录下�
 # Comment 1
 impl1=io.github.home4j.lightext.simple.SimpleExtImpl1#Hello World
 
-impl2=io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
+impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
    impl3=io.github.home4j.lightext.simple.SimpleExtImpl3 # with head space
 ```
 
