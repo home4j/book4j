@@ -142,9 +142,6 @@ LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.c
 // 获取对应名称的扩展实现
 SimpleExt impl1 = simpleLoader.getExtension("impl1");
 
-// 获取对应名称的扩展实现
-SimpleExt impl1 = simpleLoader.getExtension("impl1");
-
 // 泛型接口，可直接指定类型
 SimpleExtImpl2 impl2 = simpleLoader.getExtension("impl2");
 
