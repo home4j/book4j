@@ -182,6 +182,7 @@ public <S extends T> S getExtension(String name) {
         synchronized (holder) {
             instance = holder.get();
             if (instance == null) {
+                // 创建实例
                 instance = createExtension(name);
                 holder.set(instance);
             }
