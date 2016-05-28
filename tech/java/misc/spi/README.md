@@ -129,7 +129,9 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
    impl3=io.github.home4j.lightext.simple.SimpleExtImpl3 # with head space
 ```
 
-配置是KV格式，key为扩展实现的名字，value为实现类，注释使用“#”开头，在一行中“#”包括其后面的内容都将被忽略
+1. 配置是KV格式，key为扩展实现的名字，value为实现类
+2. 注释使用“#”开头，在一行中“#”及其后面的内容都将被忽略
+3. 空行和首尾的空白字符都会被忽略
 
 #### 加载和使用
 
