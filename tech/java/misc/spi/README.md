@@ -121,13 +121,14 @@ LightExt解决了SPI的两个问题：
 
 LightExt的配置目录为```META-INF/lightext```（和SPI不同），目录下与接口同名的文件，示例 [配置文件](https://github.com/home4j/lightext/tree/master/src/test/resources/META-INF/lightext/io.github.home4j.lightext.simple.SimpleExt) 路径为```META-INF/lightext/io.github.home4j.lightext.simple.SimpleExt```。
 
-内容是具体实现类和名称：
 ```
 # Comment 1
 impl1=io.github.home4j.lightext.simple.SimpleExtImpl1#Hello World
 impl2=io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
    impl3=io.github.home4j.lightext.simple.SimpleExtImpl3 # with head space
 ```
+
+配置是KV格式，key为扩展实现的名字，value为实现类，注释使用“#”开头，在一行中“#”包括其后面的内容都将被忽略
 
 #### 加载和使用
 
