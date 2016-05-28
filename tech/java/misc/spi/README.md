@@ -142,7 +142,6 @@ LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.c
 // 获取对应名称的扩展实现
 SimpleExt impl1 = simpleLoader.getExtension("impl1");
 
-
 // 获取对应名称的扩展实现
 SimpleExt impl1 = simpleLoader.getExtension("impl1");
 
@@ -153,7 +152,7 @@ SimpleExtImpl2 impl2 = simpleLoader.getExtension("impl2");
 SimpleExt defaultExt = simpleLoader.getDefaultExtension();
 ```
 
-默认的扩展实现需要通过，注解配置，未配置直接获取会抛```IllegalStateException```
+默认的扩展实现需要用注解配置，未配置直接获取会抛```IllegalStateException```。
 
 ```java
 @Default("impl1")
