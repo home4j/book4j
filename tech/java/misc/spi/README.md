@@ -119,12 +119,14 @@ LightExt解决了SPI的两个问题：
 
 #### 配置
 
-LightExt的配置目录为```META-INF/lightext```，和SPI不同，目录下与接口同名的文件，示例 [配置文件](https://github.com/home4j/lightext/tree/master/src/test/resources/META-INF/lightext/me.joshua.arsenal4j.java.demo.spi.Dictionary) 路径为```META-INF/lightext/io.github.home4j.lightext.simple.SimpleExt```。
+LightExt的配置目录为```META-INF/lightext```（和SPI不同），目录下与接口同名的文件，示例 [配置文件](https://github.com/home4j/lightext/tree/master/src/test/resources/META-INF/lightext/io.github.home4j.lightext.simple.SimpleExt) 路径为```META-INF/lightext/io.github.home4j.lightext.simple.SimpleExt```。
 
-内容是具体实现类的全类名：
+内容是具体实现类和名称：
 ```
-me.joshua.arsenal4j.java.demo.spi.ExtendedDictionary
-me.joshua.arsenal4j.java.demo.spi.GeneralDictionary
+# Comment 1
+impl1=io.github.home4j.lightext.simple.SimpleExtImpl1#Hello World
+impl2=io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
+   impl3=io.github.home4j.lightext.simple.SimpleExtImpl3 # with head space
 ```
 
 #### 加载和使用
