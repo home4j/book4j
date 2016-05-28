@@ -161,3 +161,5 @@ public interface SimpleExt {
 	String echo(String s);
 }
 ```
+
+更详细的接口说明可参考 [项目文档](https://github.com/home4j/lightext)。
