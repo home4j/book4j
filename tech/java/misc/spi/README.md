@@ -141,7 +141,7 @@ impl2 = io.github.home4j.lightext.simple.SimpleExtImpl2  # Comment 2
 LightExtLoader<SimpleExt> simpleLoader = LightExtLoader.getExtLoader(SimpleExt.class);
 ```
 
-根据接口获取加载器，因实现类是线程安全的，所以可以供多线程复用
+根据接口获取加载器，实现类是线程安全的，可供多线程复用，```LightExtLoader.getExtLoader```
 
 ```java
 public class DictionaryService {
