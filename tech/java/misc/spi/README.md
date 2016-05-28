@@ -1,6 +1,6 @@
 # SPI
 
-Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Apache日志组件就是基于SPI来配置日志实现类，下面是示例。
+Java提供了一套原生的SPI（Service Provider Interface）扩展机制，Apache commons-logging就是基于SPI来配置日志实现类，下面是示例。
 
 ## Demo
 
